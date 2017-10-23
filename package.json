@@ -9,7 +9,7 @@
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- test/unit",
     "integration_test": "_mocha test/integration",
     "e2e_test": "_mocha test/e2e",
-    "lint": "eslint src test --fix && swagger validate ./config/swagger.yaml"
+    "lint": "eslint src test --fix"
   },
   "dependencies": {
     "tcp-ping": "^0.1.1"
@@ -22,6 +22,7 @@
     "chai": "latest",
     "chai-as-promised": "latest",
     "dirty-chai": "latest",
+    "es6-promisify": "^5.0.0",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^1.16.0",

@@ -11,15 +11,15 @@ environments:
 lambdas:
   - lambda_name: 'LambdaPinger'
     handler: 'pinger.handler'
-    description: "Function One Description"
+    description: "Lambda to ping an address. Event must be an object with options: address, port, timeout, & attempts"
     timeout: 90
     memory_size: 128
     role_arn: 'arn:aws:iam::652754698884:role/LambdaMicroservice'
     runtime: 'nodejs6.10'
     subnet_ids:
-      - 'subnet-fa98c1bc'
-      - 'subnet-c09f8da2'
-      - 'subnet-daefd0ae'
+      - 'subnet-7a422a1e'
+      - 'subnet-cce782ba'
+      - 'subnet-e0a903b8'
     security_group_ids:
-      - 'sg-b3455cd1'
+      - 'sg-09252c6e'
     delete_unreferenced_versions: true

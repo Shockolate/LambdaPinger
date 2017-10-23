@@ -26,13 +26,16 @@ CLOBBER.include(File.join(PWD, 'node_modules'))
 desc 'Lints, unit tests, and builds the package directory.'
 task :build => [:parse_config, :retrieve, :lint, :unit_test, :package]
 
+desc 'Runs unit and integration tests.'
+task :test => [:retrieve, :lint, :unit_test, :integration_test]
+
 # Build Runner Targets
 task :merge_job => [:clean, :parse_config, :retrieve, :lint, :unit_test_report, :coverage, :package, :deploy_production]
 task :pull_request_job => [:clean, :parse_config, :retrieve, :lint, :unit_test_report, :coverage, :package, :deploy_test, :integration_test, :e2e_test]
 
 task :deploy_production => [:parse_config, :build] do
   deploy(:production)
-  upload_swagger_file
+  #upload_swagger_file
 end
 
 task :deploy_test => [:parse_config, :build] do
@@ -137,9 +140,9 @@ task :parse_config do
     end
   )
 
-  API.add_api_gateway(
-    LambdaWrap::ApiGateway.new(path_to_swagger_file: File.join(CONFIG_DIR, 'swagger.yaml'))
-  )
+  #API.add_api_gateway(
+  #  LambdaWrap::ApiGateway.new(path_to_swagger_file: File.join(CONFIG_DIR, 'swagger.yaml'))
+  #)
   puts 'parsed. '
 end
 
@@ -172,11 +175,15 @@ def package()
 
   puts 'Zipped source and modules.'
 
-  if CONFIGURATION[:s3][:secrets][:bucket] && CONFIGURATION[:s3][:secrets][:key]
-    download_secrets
-    secrets = extract_secrets
-    add_secrets_to_package(secrets)
-    cleanup_secrets(secrets)
+  unless CONFIGURATION[:s3].nil?
+    unless CONFIGURATION[:s3][:secrets].nil?
+      unless CONFIGURATION[:s3][:secrets][:bucket].nil? && CONFIGURATION[:s3][:secrets][:key].nil?
+        download_secrets
+        secrets = extract_secrets
+        add_secrets_to_package(secrets)
+        cleanup_secrets(secrets)
+      end
+    end
   end
 
   t2 = Time.now

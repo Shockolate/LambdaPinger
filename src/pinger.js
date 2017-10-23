@@ -6,10 +6,20 @@ function handler(event, context, callback) {
   // Event should be an object which may have these properties:
   // address (localhost)
   // port (80)
-  // timeout (5s), in ms
   // attempts (10)
 
-  pinger.ping(event, (error, data) => {
+  // const timeoutMillis = context.getRemainingTimeInMillis() - 10000;
+  const options = {
+    address: event.address,
+    port: event.port,
+    attempts: event.attempts,
+    timeout: event.timeout,
+  };
+
+  console.log('Options:');
+  console.log(JSON.stringify(options));
+
+  pinger.ping(options, (error, data) => {
     if (error) {
       console.log(`Error pinging: ${error}`);
       return callback(error);
