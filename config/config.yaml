@@ -1,0 +1,25 @@
+environments:
+  - name: 'production'
+    variables:
+      verbosity: 'INFO'
+    description: 'Live Production Environment.'
+  - name: 'test'
+    variables:
+      verbosity: 'DEBUG'
+    description: 'Generic Testing environment to test deployments and whatnot.'
+
+lambdas:
+  - lambda_name: 'LambdaPinger'
+    handler: 'pinger.handler'
+    description: "Function One Description"
+    timeout: 90
+    memory_size: 128
+    role_arn: 'arn:aws:iam::652754698884:role/LambdaMicroservice'
+    runtime: 'nodejs6.10'
+    subnet_ids:
+      - 'subnet-fa98c1bc'
+      - 'subnet-c09f8da2'
+      - 'subnet-daefd0ae'
+    security_group_ids:
+      - 'sg-b3455cd1'
+    delete_unreferenced_versions: true

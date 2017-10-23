@@ -1,0 +1,44 @@
+{
+  "name": "LambdaPinger",
+  "version": "0.0.1",
+  "description": "Lambda to automate pinging.",
+  "main": "pinger.js",
+  "scripts": {
+    "unit_test": "_mocha test/unit",
+    "unit_test_report": "([ -d reports ] || mkdir reports) && (_mocha -R xunit test/unit | grep \"<\" > reports/unit-tests.xml)",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- test/unit",
+    "integration_test": "_mocha test/integration",
+    "e2e_test": "_mocha test/e2e",
+    "lint": "eslint src test --fix && swagger validate ./config/swagger.yaml"
+  },
+  "dependencies": {
+    "tcp-ping": "^0.1.1"
+  },
+  "optionalDependencies": {
+    "aws-sdk": "latest"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "latest",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "dirty-chai": "latest",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
+    "istanbul": "latest",
+    "mocha": "latest",
+    "should": "latest",
+    "sinon": "latest",
+    "sinon-chai": "latest",
+    "swagger-cli": "^1.0.0-beta.2",
+    "swagger-parser": "^3.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "STASH URL"
+  },
+  "author": "YOUR EMAIL",
+  "license": "UNLICENSED"
+}

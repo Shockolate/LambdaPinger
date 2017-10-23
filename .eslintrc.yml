@@ -1,0 +1,21 @@
+extends: airbnb
+env:
+  node: true
+  mocha: true
+  es6: true
+rules:
+  consistent-return: off
+  strict: off
+  no-console: off
+  new-cap:
+    - Error
+    - capIsNewExceptions:
+      - VarChar
+  import/no-extraneous-dependencies:
+  - error
+  - devDependencies:
+    - "**/test/**/*.*"
+    optionalDependencies:
+    - "**/*.*"
+  linebreak-style: off
+  no-underscore-dangle: off
