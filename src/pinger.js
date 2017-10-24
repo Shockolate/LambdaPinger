@@ -27,7 +27,7 @@ function handler(event, context, callback) {
         console.log(`Attempt ${attempt.seq + 1} : ${attempt.time}ms.`);
       }
     }
-    return callback(null, 'Successful ping.');
+    return callback(null, data);
   });
 }
 
