@@ -22,9 +22,9 @@ function handler(event, context, callback) {
     let attempt;
     for (attempt of data.results) {
       if (has(attempt, 'err')) {
-        console.log(`Attempt ${attempt.seq} : ${isEmpty(attempt.err) ? 'Timed out' : attempt.err.code}.`);
+        console.log(`Attempt ${attempt.seq + 1} : ${isEmpty(attempt.err) ? 'Timed out' : attempt.err.code}.`);
       } else {
-        console.log(`Attempt ${attempt.seq} : ${attempt.time}ms.`);
+        console.log(`Attempt ${attempt.seq + 1} : ${attempt.time}ms.`);
       }
     }
     return callback(null, 'Successful ping.');
